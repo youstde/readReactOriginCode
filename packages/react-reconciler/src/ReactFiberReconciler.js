@@ -161,13 +161,14 @@ function scheduleRootUpdate(
 
 export function updateContainerAtExpirationTime(
   element: ReactNodeList,
-  container: OpaqueRoot,
+  container: OpaqueRoot, // FiberRoot
   parentComponent: ?React$Component<any, any>,
   expirationTime: ExpirationTime,
   callback: ?Function,
 ) {
   // TODO: If this is a nested container, this won't be the root.
   // 和之前一样
+  // rootFiber
   const current = container.current;
 
   if (__DEV__) {
@@ -283,7 +284,7 @@ export function createContainer(
 
 export function updateContainer(
   element: ReactNodeList,
-  container: OpaqueRoot,
+  container: OpaqueRoot, // FiberRoot
   parentComponent: ?React$Component<any, any>,
   callback: ?Function,
 ): ExpirationTime {
